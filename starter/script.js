@@ -42,7 +42,7 @@ console.log(allButtons);
 console.log(document.getElementsByClassName('btn'));
 
 //creating and inserting element
-
+/*
 const message = document.createElement('div'); // it is creating a DOM elemnent and store into the variable.
 message.classList.add('cookie-message');
 // message.textContent = 'We use cookie for improved functionality and analytics.';
@@ -73,7 +73,7 @@ message.style.width = '120%';
 
 message.style.height =
   Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
-
+*/
 //Attributes
 const logo = document.querySelector('.nav__logo');
 console.log(logo.alt);
@@ -93,3 +93,49 @@ logo.classList.add('c');
 logo.classList.remove('c');
 logo.classList.toggle('c');
 logo.classList.contains('c');
+
+//smooth scroling adding
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function (e) {
+  const s1cords = section1.getBoundingClientRect();
+  // console.log(s1cords);
+  // console.log(e.target.getBoundingClientRect());
+
+  // console.log('current scroll (x/y)', window.pageXOffset, window.pageYOffset);
+  // console.log(
+  //   'heigth/width viewport',
+  //   document.documentElement.clientHeight,
+  //   document.documentElement.clientWidth
+  // );
+
+  //scroling
+  /* window.scrollTo(
+    s1cords.left + window.pageXOffset,
+    s1cords.top + window.pageYOffset
+  ); // the positing of the function getBoundingClientRect() is relative depending on the view port that why to work scroling method from any position we have to define the absoulute positing to work properly
+  */
+
+  // by passing object
+
+  // window.scrollTo({
+  //   left: s1cords.left + window.pageXOffset,
+  //   top: s1cords.top + window.pageYOffset,
+  //   behavior: 'smooth',
+  // });
+
+  //Modern Way
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
+
+// old way of listning events is using on before the event and then implementing the functions
+
+// random color generator
+// const randomInt = (min, max) => {
+//   Math.floor(math.random() + (max - min + 1) * min);
+//   const randomColor = () => {
+//     `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+//   };
+// };
