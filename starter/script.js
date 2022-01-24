@@ -62,6 +62,29 @@ btnScrollTo.addEventListener('click', function (e) {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
 
+//Tabbed component
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+tabsContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.operations__tab');
+
+  if (!clicked) return;
+
+  //active tab
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
+  clicked.classList.add('operations__tab--active');
+
+  //activate content area
+  const activePoint = clicked.getAttribute('data-tab');
+  const activeContent = document.querySelector(
+    `.operations__content--${activePoint}`
+  );
+  tabsContent.forEach(tc => tc.classList.remove('operations__content--active'));
+  activeContent.classList.add('operations__content--active');
+});
+
 ///////////EXPERIMENTAL WORK///////////////
 // console.log(document.documentElement);
 // console.log(document.head);
@@ -172,3 +195,24 @@ message.style.height =
 //     `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
 //   };
 // };
+
+/*
+//Selecting: Parent Element(upward)
+const h1 = document.querySelector('h1');
+console.log(h1.parentNode);
+console.log(h1.parentElement);
+
+h1.closest('.header').style.background = 'var(--gradient-secondary)';
+h1.closest('h1').style.background = 'var(--gradient-primary)';
+
+//going sideway: siblings
+console.log(h1.previousElementSibling);
+console.log(h1.nextElementSibling);
+
+console.log(h1.parentElement.children);
+[...h1.parentElement.children].forEach(function (el) {
+  if (el !== h1) {
+    el.style.transform = 'scale(0.5)';
+  }
+});
+*/
